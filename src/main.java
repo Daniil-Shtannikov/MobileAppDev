@@ -3,7 +3,13 @@ import java.lang.*;
 import java.io.*;
 
 public class main {
+    static int factorial(int x){
 
+        if (x <= 1){
+            return 1;
+        }
+        return x * factorial(x - 1);
+    }
     public static void main (String[] args) throws java.lang.Exception {
 //Задача 1: Четное или нечетное число
         Scanner scanner = new Scanner(System.in);
@@ -114,17 +120,13 @@ public class main {
         strBuffer.reverse();
         System.out.println("Перевернутая строка: "+strBuffer.toString());
 
-//Задача 10: Количество цифр в числе
+
+Задача 11: Факториал числа
+Условие: Пользователь вводит целое число N. Программа должна вычислить факториал этого числа (N!).*/
 
         System.out.println("Введите число: ");
-        int N = scanner.nextInt();
-        int count=0;
-        while(N>0)
-        {
-            count++;
-            N= N/10;
-        }
-        System.out.println(count+" цифр");*/
+    	int N = scanner.nextInt();
 
+        System.out.println("Факториал числа= " + factorial(N));
     }
 }
