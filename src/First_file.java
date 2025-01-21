@@ -1,17 +1,28 @@
 import java.util.*;
 import java.lang.*;
-import java.io.*;
 
 public class First_file{
-/*    static int factorial(int x){
+  /*static int factorial(int x){
 
         if (x <= 1){
             return 1;
         }
         return x * factorial(x - 1);
     }
-*/
-    public static void Main (String[] args) throws java.lang.Exception {
+       static boolean isPalindrome(String s) {
+
+            s = s.toLowerCase();
+
+        String rev = "";
+
+        for (int i = s.length() - 1; i >= 0; i--) {
+            rev = rev + s.charAt(i);
+        }
+
+        return s.equals(rev);
+    }*/
+
+    public static void Main () {
 //Задача 1: Четное или нечетное число
         Scanner scanner = new Scanner(System.in);
         /*System.out.print("Input a number: ");
@@ -137,17 +148,29 @@ public class First_file{
 
         System.out.println("Введите число: ");
         int N = scanner.nextInt();
-        System.out.println("Факториал числа= " +factorial(N));*/
+        System.out.println("Факториал числа= " + factorial(N));
 
-//Задача 12: Сумма цифр числа
-        System.out.println("Введите число: ");
-        int N = scanner.nextInt();
-        int Sum=0;
-        while(N>0)
-        {
-            Sum+= N%10;
-            N = N/10;
+//Задача 13: Палиндром
+
+        System.out.println("Введите строку: ");
+        String s = scanner.nextLine();
+
+        if (isPalindrome(s)) {
+            System.out.println("Палиндром");
+        } else {
+            System.out.println("Не палиндром");
         }
-        System.out.println("Сумма цифр= "+Sum);
+
+//Задача 14: Найти максимальное число в массиве
+
+        System.out.println("Введите размер массива: ");
+        int SIZE = scanner.nextInt();
+        int[] nums =new int[SIZE];
+        System.out.println("Введите элементы массива: ");
+        for(int i = 0; i < SIZE; i++) {
+            nums[i] = scanner.nextInt();
+        }
+        System.out.println("Максимальный элемент: " + Arrays.stream(nums).max().getAsInt() ); */
     }
 }
+
