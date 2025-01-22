@@ -2,30 +2,63 @@ import java.util.*;
 import java.lang.*;
 
 public class First_file{
-  /*static int factorial(int x){
-
+   /* static int factorial(int x){
         if (x <= 1){
             return 1;
         }
         return x * factorial(x - 1);
     }
-       static boolean isPalindrome(String s) {
-
-            s = s.toLowerCase();
-
+    static boolean isPalindrome(String s) {
+        s = s.toLowerCase();
         String rev = "";
 
         for (int i = s.length() - 1; i >= 0; i--) {
             rev = rev + s.charAt(i);
         }
-
         return s.equals(rev);
-    }*/
+    }
+    public static void count(String str)
+	{
+        int vowCount = 0, conCount = 0;
+        for (int i = 0; i < str.length(); i++)
+        {
+          if ("aeiou".indexOf(str.charAt(i)) != -1)
+          {
+            vowCount++;
+          }
+          else if (str.charAt(i) >= 'a' && str.charAt(i) <= 'z')
+          {
+            conCount++;
+          }
+        }
+        System.out.println("Гласных: " + vowCount);
+        System.out.println("Согласных: " + conCount);
+	}
+   static void Armstrong(int N)
+   {
+       int mainN=N, count=0,Sum=0;
+       Vector<Integer> nums = new Vector<Integer>();
 
-    public static void Main () {
+       while(N>0)
+       {
+           count++;
+           nums.add(N%10);
+           N=N/10;
+       }
+       for (int i = 0; i < nums.size(); i++)
+       {
+           Sum += (int) Math.pow(nums.get(i),count);
+       }
+       if (Sum == mainN)
+           System.out.println("Число Армстронга");
+       else
+           System.out.println("Не число Армстронга");
+   }*/
+
+    public void Main () {
 //Задача 1: Четное или нечетное число
-        Scanner scanner = new Scanner(System.in);
-        /*System.out.print("Input a number: ");
+        /*Scanner scanner = new Scanner(System.in);
+        System.out.print("Input a number: ");
         int num = scanner.nextInt();
 
         if(num%2==0){
@@ -161,16 +194,81 @@ public class First_file{
             System.out.println("Не палиндром");
         }
 
-//Задача 14: Найти максимальное число в массиве
+//Задачи 14, 15, 16
 
         System.out.println("Введите размер массива: ");
-        int SIZE = scanner.nextInt();
+        int pos=0, neg=0, neu=0;
+        int Sum=0, SIZE = scanner.nextInt();
         int[] nums =new int[SIZE];
         System.out.println("Введите элементы массива: ");
         for(int i = 0; i < SIZE; i++) {
             nums[i] = scanner.nextInt();
+            Sum+=nums[i];
+            if (nums[i]>0)
+            {
+                pos++;
+            }
+            else if (nums[i]<0)
+            {
+                neg++;
+            }
+            else
+            {
+                neu++;
+            }
         }
-        System.out.println("Максимальный элемент: " + Arrays.stream(nums).max().getAsInt() ); */
+        System.out.println("Максимальный элемент: " + Arrays.stream(nums).max().getAsInt() );
+        System.out.println("Сумма элементов: " + Sum);
+
+//Задача 17: Простые числа в диапазоне
+    System.out.println("Введите нижнюю границу: ");
+    int A = scanner.nextInt();
+    System.out.println("Введите верхнюю границу: ");
+    int B = scanner.nextInt();
+    for (;A<=B ;A++){
+        boolean prost = true;
+        for(int i=2; i <= A/2; i++)
+        {
+            if (A%i == 0)
+            {
+                prost = false;
+                break;
+            }
+        }
+        if (prost)
+        {
+            System.out.println(A);
+        }
+        else
+        {
+            continue;
+        }
+    }
+
+//Задача 18: Подсчет гласных и согласных в строке
+
+    count(scanner.nextLine());
+
+//Задача 19: Перестановка слов в строке
+
+        System.out.println("Введите строку: ");
+        String s[]= scanner.nextLine().split(" ");
+        String rev = "";
+        for (int i = s.length - 1; i >= 0; i--)
+        {
+            rev += s[i] + " ";
+        }
+        System.out.println("Строка с перестановкой:");
+        System.out.println(rev);
+
+//Задача 20: Число Армстронга
+
+        int N = scanner.nextInt();
+        System.out.println("Введите число: ");
+        Armstrong(N);*/
+
     }
 }
+
+
 
