@@ -1,4 +1,63 @@
+import java.util.ArrayList;
+import java.util.List;
+
 //2. Наследование: Класс "Работник" и "Менеджер"
+class Person {
+    private String name;
+    private int age;
+    private final String gender;
+
+    public Person(String name, int age, String gender) {
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+    }
+
+    public void displayInfo() {
+        System.out.println("Name: " + name + ", Age: " + age + ", Gender: " + gender);
+    }
+
+    public void increaseAge() {
+        age++;
+    }
+
+    public void changeName(String newName) {
+        this.name = newName;
+    }
+}
+
+class Worker extends Person {
+    private double salary;
+
+    public Worker(String name, int age, String gender, double salary) {
+        super(name, age, gender);
+        this.salary = salary;
+    }
+    public double getSalary() {
+        return salary;
+    }
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+}
+
+class Manager extends Worker {
+    private final List<Worker> workers;
+
+    public Manager(String name, int age, String gender, double salary) {
+        super(name, age, gender, salary);
+        this.workers = new ArrayList<>();
+    }
+
+    public void addSubordinate(Worker worker) {
+        workers.add(worker);
+    }
+
+    public List<Worker> getworkers() {
+        return workers;
+    }
+}
 
 public class Third_file
 {
