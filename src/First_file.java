@@ -58,7 +58,7 @@ public class First_file{
     public void Main () {
 //Задача 1: Четное или нечетное число
         /*Scanner scanner = new Scanner(System.in);
-        System.out.print("Input a number: ");
+        System.out.println("Input a number: ");
         int num = scanner.nextInt();
 
         if(num%2==0){
