@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class ComplexNumber {
     private double real;
     private double imaginary;

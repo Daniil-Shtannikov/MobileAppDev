@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class UniqueID {
     private static int currentID = 0;
 

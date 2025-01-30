@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class BankAccount {
     protected String accountNumber;
     protected double balance;

@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class Point {
     private int x;
     private int y;

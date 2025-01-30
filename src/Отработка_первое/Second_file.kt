@@ -1,4 +1,5 @@
-import kotlin.math.sqrt
+package Отработка_первое
+
 /*
 //1. Функция для нахождения максимума
 fun checkNum(num1: Int, num2: Int){

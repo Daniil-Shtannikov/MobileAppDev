@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class Player {
     private String name;
     private int health;

@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class Game {
     char[][] board = new char[3][3];
     Player1 player1, player2;

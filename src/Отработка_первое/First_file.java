@@ -1,5 +1,4 @@
-import java.util.*;
-import java.lang.*;
+package Отработка_первое;
 
 public class First_file{
    /* static int factorial(int x){

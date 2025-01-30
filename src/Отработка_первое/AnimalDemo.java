@@ -1,3 +1,4 @@
+package Отработка_первое;
 
 class Dog implements Animal {
     public void makeSound() {

@@ -1,3 +1,5 @@
+package Отработка_первое;
+
 class Matrix {
     private double[][] data;
 
