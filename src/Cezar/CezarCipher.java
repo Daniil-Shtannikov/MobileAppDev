@@ -1,20 +1,18 @@
 package Cezar;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class CezarCipher{
-
-    private static final char[] ALPHA = {'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з',
-            'и','к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ',
-            'ъ', 'ы', 'ь', 'э', 'я', '.', ',', '«', '»', '"', '\'', ':', '!', '?', ' '};
 
     public boolean isValidKey(int key, char[] alpha) {
         return false;
     };
-    public boolean isFileExists(String filePath) {
-        return false;
-    }
 
-    public String readFile(String filePath) {
-        return filePath;
+
+    public static boolean fileExists(String fileName) {
+        Path path = Paths.get(fileName);
+        return Files.exists(path);
     }
-    public void writeFile(String content, String filePath) {}
 }
