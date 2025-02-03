@@ -11,7 +11,7 @@ import static Cezar.CezarCipher.fileExists;
 public class Main {
 
     private static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
-    private static final int ALPHABET_SIZE = ALPHABET.length();
+    public static final int ALPHABET_SIZE = ALPHABET.length();
 
     public static void main(String[] Argv) {
 
@@ -30,12 +30,11 @@ public class Main {
         int key = scanner.nextInt();
 
         try {
+            CezarCipher cipher = new CezarCipher();
+            if (cipher.isValidKey(key, ALPHABET_SIZE))
+                throw new IllegalArgumentException("Ключ должен быть в диапазоне от 1 до " + (ALPHABET_SIZE - 1));
             if (!fileExists(inputFile)) {
                 throw new FileNotFoundException("Файл не найден: " + inputFile);
-            }
-
-            if (key < 0 || key >= ALPHABET_SIZE) {
-                throw new IllegalArgumentException("Ключ должен быть в диапазоне от 0 до " + (ALPHABET_SIZE - 1));
             }
 
             if (mode.equalsIgnoreCase("encrypt")) {
@@ -52,8 +51,6 @@ public class Main {
             System.err.println(e.getMessage());
         } catch (IOException e) {
             System.err.println("Ошибка ввода-вывода: " + e.getMessage());
-        } catch (IllegalArgumentException e) {
-            System.err.println(e.getMessage());
         }
     }
 
