@@ -1,9 +1,6 @@
 package Cezar;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 import static Cezar.CezarCipher.fileExists;
@@ -38,9 +35,9 @@ public class Main {
             }
 
             if (mode.equalsIgnoreCase("encrypt")) {
-                encryptFile(inputFile, outputFile, key);
+                encryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
             } else if (mode.equalsIgnoreCase("decrypt")) {
-                decryptFile(inputFile, outputFile, key);
+                decryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
             } else {
                 throw new IllegalArgumentException("Неверный режим работы: " + mode);
             }
@@ -54,33 +51,28 @@ public class Main {
         }
     }
 
-    public static boolean fileExists(String fileName) {
-        Path path = Paths.get(fileName);
-        return Files.exists(path);
+    public static void encryptFile(String inputFileName, String outputFileName, int key, String ALPHABET, int ALPHABET_SIZE) throws IOException {
+        processFile(inputFileName, outputFileName, key, true, ALPHABET, ALPHABET_SIZE);
     }
 
-    public static void encryptFile(String inputFileName, String outputFileName, int key) throws IOException {
-        processFile(inputFileName, outputFileName, key, true);
+    public static void decryptFile(String inputFileName, String outputFileName, int key, String ALPHABET, int ALPHABET_SIZE) throws IOException {
+        processFile(inputFileName, outputFileName, key, false, ALPHABET, ALPHABET_SIZE);
     }
 
-    public static void decryptFile(String inputFileName, String outputFileName, int key) throws IOException {
-        processFile(inputFileName, outputFileName, key, false);
-    }
-
-    private static void processFile(String inputFileName, String outputFileName, int key, boolean encrypt) throws IOException {
+    private static void processFile(String inputFileName, String outputFileName, int key, boolean encrypt, String ALPHABET, int ALPHABET_SIZE) throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName));
              BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName))) {
 
             String line;
             while ((line = reader.readLine()) != null) {
-                String processedLine = processLine(line, key, encrypt);
+                String processedLine = processLine(line, key, encrypt, ALPHABET, ALPHABET_SIZE);
                 writer.write(processedLine);
                 writer.newLine();
             }
         }
     }
 
-    private static String processLine(String line, int key, boolean encrypt) {
+    private static String processLine(String line, int key, boolean encrypt, String ALPHABET, int ALPHABET_SIZE) {
         StringBuilder result = new StringBuilder();
         for (char c : line.toCharArray()) {
             if (ALPHABET.indexOf(c) != -1) {
