@@ -4,6 +4,8 @@ import java.io.*;
 import java.util.Scanner;
 
 import static Cezar.CezarCipher.fileExists;
+import static Cezar.Decrypt.decryptFile;
+import static Cezar.Encrypt.encryptFile;
 
 public class Main {
 
@@ -14,7 +16,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите режим работы (encrypt/decrypt): ");
+        System.out.print("Введите режим работы (шифрование/дешифрование): ");
         String mode = scanner.nextLine();
 
         System.out.print("Введите адрес файла для чтения: ");
@@ -23,20 +25,20 @@ public class Main {
         System.out.print("Введите адрес файла для записи: ");
         String outputFile = scanner.nextLine();
 
-        System.out.print("Введите ключ: ");
+        System.out.print("Введите ключ(число): ");
         int key = scanner.nextInt();
 
         try {
             CezarCipher cipher = new CezarCipher();
-            if (cipher.isValidKey(key, ALPHABET_SIZE))
-                throw new IllegalArgumentException("Ключ должен быть в диапазоне от 1 до " + (ALPHABET_SIZE - 1));
             if (!fileExists(inputFile)) {
                 throw new FileNotFoundException("Файл не найден: " + inputFile);
             }
+            if (!cipher.isValidKey(key, ALPHABET_SIZE))
+                throw new IllegalArgumentException("Ключ должен быть в диапазоне от 1 до " + (ALPHABET_SIZE - 1));
 
-            if (mode.equalsIgnoreCase("encrypt")) {
+            if (mode.equalsIgnoreCase("шифрование")) {
                 encryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
-            } else if (mode.equalsIgnoreCase("decrypt")) {
+            } else if (mode.equalsIgnoreCase("дешифрование")) {
                 decryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
             } else {
                 throw new IllegalArgumentException("Неверный режим работы: " + mode);
@@ -49,40 +51,5 @@ public class Main {
         } catch (IOException e) {
             System.err.println("Ошибка ввода-вывода: " + e.getMessage());
         }
-    }
-
-    public static void encryptFile(String inputFileName, String outputFileName, int key, String ALPHABET, int ALPHABET_SIZE) throws IOException {
-        processFile(inputFileName, outputFileName, key, true, ALPHABET, ALPHABET_SIZE);
-    }
-
-    public static void decryptFile(String inputFileName, String outputFileName, int key, String ALPHABET, int ALPHABET_SIZE) throws IOException {
-        processFile(inputFileName, outputFileName, key, false, ALPHABET, ALPHABET_SIZE);
-    }
-
-    private static void processFile(String inputFileName, String outputFileName, int key, boolean encrypt, String ALPHABET, int ALPHABET_SIZE) throws IOException {
-        try (BufferedReader reader = new BufferedReader(new FileReader(inputFileName));
-             BufferedWriter writer = new BufferedWriter(new FileWriter(outputFileName))) {
-
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String processedLine = processLine(line, key, encrypt, ALPHABET, ALPHABET_SIZE);
-                writer.write(processedLine);
-                writer.newLine();
-            }
-        }
-    }
-
-    private static String processLine(String line, int key, boolean encrypt, String ALPHABET, int ALPHABET_SIZE) {
-        StringBuilder result = new StringBuilder();
-        for (char c : line.toCharArray()) {
-            if (ALPHABET.indexOf(c) != -1) {
-                int originalIndex = ALPHABET.indexOf(c);
-                int newIndex = encrypt ? (originalIndex + key) % ALPHABET_SIZE : (originalIndex - key + ALPHABET_SIZE) % ALPHABET_SIZE;
-                result.append(ALPHABET.charAt(newIndex));
-            } else {
-                result.append(c);
-            }
-        }
-        return result.toString();
     }
 }
