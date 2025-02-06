@@ -6,6 +6,7 @@ import java.util.Scanner;
 import static Cezar.CezarCipher.fileExists;
 import static Cezar.Decrypt.decryptFile;
 import static Cezar.Encrypt.encryptFile;
+import static Cezar.BruteForce.bruteForce;
 
 public class Main {
 
@@ -40,6 +41,8 @@ public class Main {
                 encryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
             } else if (mode.equalsIgnoreCase("дешифрование")) {
                 decryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
+            } else if (mode.equalsIgnoreCase("Взлом brute force")) {
+                bruteForce(inputFile, outputFile, ALPHABET, ALPHABET_SIZE);
             } else {
                 throw new IllegalArgumentException("Неверный режим работы: " + mode);
             }
