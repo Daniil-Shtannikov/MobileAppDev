@@ -6,11 +6,10 @@ import java.util.Scanner;
 import static Cezar.CezarCipher.fileExists;
 import static Cezar.Decrypt.decryptFile;
 import static Cezar.Encrypt.encryptFile;
-import static Cezar.BruteForce.bruteForce;
 
 public class Main {
 
-    private static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+    public static final String ALPHABET = "АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯабвгдеёжзийклмнопрстуфхцчшщъыьэюя";
     public static final int ALPHABET_SIZE = ALPHABET.length();
 
     public static void main(String[] Argv) {
@@ -38,12 +37,10 @@ public class Main {
                 throw new IllegalArgumentException("Ключ должен быть в диапазоне от 1 до " + (ALPHABET_SIZE - 1));
 
             if (mode.equalsIgnoreCase("шифрование")) {
-                encryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
+                encryptFile(inputFile, outputFile, key);
             } else if (mode.equalsIgnoreCase("дешифрование")) {
-                decryptFile(inputFile, outputFile, key, ALPHABET, ALPHABET_SIZE);
-            } else if (mode.equalsIgnoreCase("Взлом brute force")) {
-                bruteForce(inputFile, outputFile, ALPHABET, ALPHABET_SIZE);
-            } else {
+                decryptFile(inputFile, outputFile, key);
+            }  else {
                 throw new IllegalArgumentException("Неверный режим работы: " + mode);
             }
 
