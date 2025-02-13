@@ -43,7 +43,6 @@ public class Main {
             }  else {
                 throw new IllegalArgumentException("Неверный режим работы: " + mode);
             }
-
             System.out.println("Файл успешно обработан");
 
         } catch (FileNotFoundException e) {
